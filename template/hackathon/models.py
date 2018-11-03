@@ -1,16 +1,23 @@
-import datetime
-
 from django.db import models
-from django.utils import timezone
 
 
 class Question(models.Model):
-    # ...
-    def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+    id = models.AutoField(primary_key=True)
+    context = models.CharField(max_length=30)
 
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+class Student(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30)
+
+
+class School(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30)
+
+
+class SurveyResult(models.Model):
+    ids = models.IntegerField()
+    question = models.TextField()
+    answer = models.BooleanField()
+    school = models.IntegerField()
